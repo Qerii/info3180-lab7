@@ -17,10 +17,15 @@ if og_image and og_image['content']:
 thumbnail_spec = soup.find('link', rel='image_src')
 if thumbnail_spec and thumbnail_spec['href']:
     print thumbnail_spec['href']
-    print ''
+    #print ''
 
 
-image = """<img src="%s"><br />"""
+#image = """<img src="%s"><br />"""
+image = []
 for img in soup.findAll("img", src=True):
-   print image % urlparse.urljoin(url, img["src"])
-   print ''
+    image.append("%s" % urlparse.urljoin(url, img["src"]))
+print image
+
+   
+   
+
