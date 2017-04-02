@@ -6,10 +6,13 @@ This file creates your application.
 """
 
 from app import app
-from flask import render_template, request, redirect, url_for, jsonify
+from flask import render_template, request, redirect, url_for, jsonify, make_response
 from bs4 import BeautifulSoup
 import requests
 import urlparse
+
+from image_getter import images
+
 
 ###
 # Routing for your application.
@@ -19,6 +22,13 @@ import urlparse
 def home():
     """Render website's home page."""
     return render_template('home.html')
+    
+    
+    
+@app.route('/api/thumbnails')
+def url_thumbnail():
+    result = jsonify({'error':'null','message':'success','thumbnails':images()})
+    return result
 
 
 ###
